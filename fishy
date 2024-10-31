@@ -7,7 +7,6 @@ mkdir -p ~/.config/fish
 
 echo Creating symlinks... 
 ln -sf $HOME/dotfiles/fish/config.fish ~/.config/fish/config.fish
-# cp $HOME/dotfiles/fish ~/.config/fish
 
 TIME=$(("$(date +%s%3N)" - START))
 echo Done in ${TIME}ms!
