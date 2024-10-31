@@ -1,0 +1,13 @@
+#!/bin/bash
+START=$(date +%s%3N)
+
+echo Making config directory if not existing...
+mkdir -p ~/.config/fish
+
+echo Copying Files... 
+cp /cs/home/$USER/Documents/configs/fish/config.fish ~/.config/fish
+
+TIME=$(("$(date +%s%3N)" - START))
+echo Done in ${TIME}ms!
+sleep 0.5
+fish
