@@ -1,11 +1,13 @@
 #!/bin/bash
 START=$(date +%s%3N)
+HOME="/cs/home/$USER/"
 
 echo Making config directory if not existing...
 mkdir -p ~/.config/fish
 
-echo Copying config files... 
-cp /cs/home/$USER/Documents/configs/fish/config.fish ~/.config/fish
+echo Creating symlinks... 
+ln -sf $HOME/dotfiles/fish/config.fish ~/.config/fish/config.fish
+# cp $HOME/dotfiles/fish ~/.config/fish
 
 TIME=$(("$(date +%s%3N)" - START))
 echo Done in ${TIME}ms!
