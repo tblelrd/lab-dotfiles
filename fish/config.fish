@@ -5,7 +5,7 @@ end
 function starship_transient_prompt_func
   starship module character
 end
-starship init fish | source
+starship init fish --print-full-init | sed 's/"$(commandline)"/(commandline | string collect)/' | source
 enable_transience
 # fish_config prompt choose pythonista
 alias dojava="javac *.java && java"
