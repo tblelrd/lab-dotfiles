@@ -3,9 +3,12 @@ START=$(date +%s%3N)
 NET_HOME="/cs/home/$USER/"
 HOME="/home/$USER/"
 
-echo "Making config directory"
+echo "Making config directories..."
+
+echo "-> Making the fish directory"
 mkdir -p ~/.config/fish
 
+echo
 
 echo "Creating symlinks..." 
 
