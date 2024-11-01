@@ -3,6 +3,7 @@ START=$(date +%s%3N)
 HOME="/cs/home/$USER"
 
 echo Fetching latest version...
+git reset --hard HEAD
 git pull
 
 echo Adding symlinks to user bin...
