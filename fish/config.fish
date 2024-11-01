@@ -5,3 +5,4 @@ end
 
 fish_config prompt choose pythonista
 alias dojava="javac *.java && java"
+set -Ux NETHOME "/cs/home/$USER/"
