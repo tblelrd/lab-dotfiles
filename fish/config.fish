@@ -6,6 +6,7 @@ function starship_transient_prompt_func
   starship module character
 end
 starship init fish | source
+enable_transience
 # fish_config prompt choose pythonista
 alias dojava="javac *.java && java"
 alias stacscheck="/cs/studres/Library/stacscheck/stacscheck"
