@@ -8,10 +8,10 @@ echo "Downloading Dependencies..."
 echo "-> Downloading Starship..."
 # Starship requires this
 export BIN_DIR="$NET_HOME/usr/bin"
-curl -sSOJ https://starship.rs/install.sh 
-chmod +x ./install.sh
-./install.sh --yes 
-rm ./install.sh
+curl -sS https://starship.rs/install.sh -O starship-install.sh
+chmod +x ./starship-install.sh
+./install.sh --yes > /dev/nuill 
+rm ./starship-install.sh
 
 echo "Making config directories..."
 
