@@ -3,11 +3,15 @@ START=$(date +%s%3N)
 NET_HOME="/cs/home/$USER/"
 HOME="/home/$USER/"
 
-echo Making config directory if not existing...
+echo "Making config directory"
 mkdir -p ~/.config/fish
 
-echo Creating symlinks... 
+
+echo "Creating symlinks..." 
+
+echo "-> Symlinking config.fish..."
 ln -sf $NET_HOME/dotfiles/fish/config.fish $HOME/.config/fish/config.fish
+
 
 TIME=$(("$(date +%s%3N)" - START))
 echo Done in ${TIME}ms!
