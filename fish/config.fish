@@ -4,3 +4,4 @@ function fish_greeting
 end
 
 fish_config prompt choose pythonista
+alias dojava="javac *.java && java"
