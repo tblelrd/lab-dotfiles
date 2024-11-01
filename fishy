@@ -24,6 +24,8 @@ echo "Creating symlinks..."
 
 echo "-> Symlinking config.fish..."
 ln -sf $NET_HOME/dotfiles/fish/config.fish $HOME/.config/fish/config.fish
+echo "-> Symlinking starship.toml..."
+ln -sf $NET_HOME/dotfiles/configs/starship.toml $HOME/.config/starship.toml
 
 
 TIME=$(("$(date +%s%3N)" - START))
