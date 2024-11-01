@@ -3,6 +3,13 @@ START=$(date +%s%3N)
 NET_HOME="/cs/home/$USER/"
 HOME="/home/$USER/"
 
+echo "Downloading Dependencies..."
+
+echo "-> Downloading Starship..."
+# Starship requires this
+export BIN_DIR="$NET_HOME/usr/bin"
+curl 
+
 echo "Making config directories..."
 
 echo "-> Making the fish directory"
