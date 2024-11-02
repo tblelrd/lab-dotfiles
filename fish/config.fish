@@ -6,4 +6,5 @@ starship init fish --print-full-init | sed 's/"$(commandline)"/(commandline | st
 # fish_config prompt choose pythonista
 alias dojava="javac *.java && java"
 alias stacscheck="/cs/studres/Library/stacscheck/stacscheck"
+alias py=python
 set -Ux NETHOME "/cs/home/$USER/"
