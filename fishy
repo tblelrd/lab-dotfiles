@@ -1,38 +1,21 @@
 #!/bin/bash
+
+# Define start time in milliseconds (the %3N cuts off the microseconds I think)
 START=$(date +%s%3N)
-NET_HOME="/cs/home/$USER/"
-HOME="/home/$USER/"
 
+# The network home directory
+NET_HOME="/cs/home/$USER"
 
-echo "Downloading Dependencies..."
+pushd "$NET_HOME/dotfiles"
+echo Fetching latest version...
+git reset --hard HEAD
+git pull
 
-echo "-> Downloading Starship..."
-# Starship requires this
-export BIN_DIR="$NET_HOME/usr/bin"
-curl -sSOJ https://starship.rs/install.sh 
-chmod +x ./install.sh
-./install.sh --yes > /dev/null
-rm ./install.sh
+echo Adding symlinks to user bin...
+ln -sf $NET_HOME/dotfiles/fishy /cs/home/$USER/usr/bin
 
-
-echo "Making config directories..."
-
-echo "-> Making the fish directory"
-mkdir -p ~/.config/fish
-
-
-echo
-echo "Creating symlinks..." 
-
-
-echo "-> Symlinking config.fish..."
-ln -sf $NET_HOME/dotfiles/fish/config.fish $HOME/.config/fish/config.fish
-echo "-> Symlinking starship.toml..."
-ln -sf $NET_HOME/dotfiles/configs/starship.toml $HOME/.config/starship.toml
-
-
-
+# Finish timer
 TIME=$(("$(date +%s%3N)" - START))
 echo Done in ${TIME}ms!
-sleep 0.5
-fish
+
+"$NET_HOME/dotfiles/fish.sh"
