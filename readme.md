@@ -19,5 +19,5 @@ cd dotfiles
 Then run the setup script
 
 ```sh
-./setup.sh
+./fishy
 ```
