@@ -17,5 +17,6 @@ ln -sf $NET_HOME/dotfiles/fishy /cs/home/$USER/usr/bin
 # Finish timer
 TIME=$(("$(date +%s%3N)" - START))
 echo Done in ${TIME}ms!
+echo "\n\n"
 
 "$NET_HOME/dotfiles/fish.sh"
