@@ -1,6 +1,6 @@
 function fish_greeting
   # clear
-  command time -f "%Ems" podman run -it --rm macabees/neofetch
+  # command time -f "%Ems" podman run -it --rm macabees/neofetch
 end
 starship init fish --print-full-init | sed 's/"$(commandline)"/(commandline | string collect)/' | source
 # fish_config prompt choose pythonista
