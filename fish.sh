@@ -51,6 +51,13 @@ bold "Making config directories..."
 bold "-> Making the fish directory"
 mkdir -p ~/.config/fish
 
+bold "-> Making fastfetch directory"
+mkdir -p ~/.config/fastfetch
+bold "---> Configuring fastfetch..."
+ln -sf $NET_HOME/dotfiles/configs/fastfetch.jsonc $HOME/.config/fastfetch/config.jsonc
+
+bold "Finishing up..."
+
 bold "-> Creating symlinks..." 
 
 bold "---> Symlinking config.fish..."
