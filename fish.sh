@@ -20,25 +20,28 @@ chmod +x ./install.sh
 ./install.sh --yes > /dev/null
 rm ./install.sh
 
-bold "-> Installing neofetch (fastfetch)"
-bold "---> Cloning repository..."
-git clone --depth 1 https://github.com/fastfetch-cli/fastfetch.git fastfetch &> /dev/null
+bold "-> Checking if fastfetch exists"
+if [ -z "$BIN_DIR/fastfetch"]; then
+  bold "-> Installing neofetch (fastfetch)"
+  bold "---> Cloning repository..."
+  git clone --depth 1 https://github.com/fastfetch-cli/fastfetch.git fastfetch &> /dev/null
 
-bold "---> Starting Build"
-pushd fastfetch
-mkdir -p build/
-pushd build/
-cmake .. &> /dev/null
-cmake --build . --target fastfetch "-j$(nproc)" &> /dev/null
+  bold "---> Starting Build"
+  pushd fastfetch
+  mkdir -p build/
+  pushd build/
+  cmake .. &> /dev/null
+  cmake --build . --target fastfetch "-j$(nproc)" &> /dev/null
 
 
-bold "---> Copying binaries"
-cp "$(pwd)/fastfetch" "$BIN_DIR/fastfetch"
+  bold "---> Copying binaries"
+  cp "$(pwd)/fastfetch" "$BIN_DIR/fastfetch"
 
-bold "---> Cleaning up"
-popd 
-popd 
-rm -rf fastfetch
+  bold "---> Cleaning up"
+  popd 
+  popd 
+  rm -rf fastfetch
+fi
 
 bold "Making config directories..."
 
