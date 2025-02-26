@@ -18,14 +18,15 @@ rm ./install.sh
 
 echo "-> Installing neofetch (fastfetch)"
 echo "---> Cloning repository..."
-git clone --depth 1 https://github.com/fastfetch-cli/fastfetch.git fastfetch
+git clone --depth 1 https://github.com/fastfetch-cli/fastfetch.git fastfetch &> /dev/null
 
 echo "---> Starting Build"
 pushd fastfetch
 mkdir -p build/
 pushd build/
 cmake ..
-cmake --build . --target fastfetch "-j$(nproc)"
+cmake --build . --target fastfetch "-j$(nproc)" &> /dev/null
+
 
 echo "---> Copying binaries"
 cp "$(pwd)/fastfetch" "$BIN_DIR/fastfetch"
