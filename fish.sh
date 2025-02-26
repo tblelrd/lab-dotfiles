@@ -6,7 +6,7 @@ NET_HOME="/cs/home/$USER/"
 HOME="/home/$USER/"
 
 function bold () {
-  echo -e "\e[97m$1\e[0m"
+  echo -e "\e[92m$1\e[0m"
 }
 
 # BIN PATH INNIT
