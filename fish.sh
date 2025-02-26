@@ -24,7 +24,7 @@ echo "---> Starting Build"
 pushd fastfetch
 mkdir -p build/
 pushd build/
-cmake ..
+cmake .. &> /dev/null
 cmake --build . --target fastfetch "-j$(nproc)" &> /dev/null
 
 
