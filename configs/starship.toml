@@ -1,107 +1,46 @@
 format = """
-$shlvl\
-$singularity\
-$kubernetes\
+$username\
+$hostname\
 $directory\
-$vcsh\
-$fossil_branch\
-$fossil_metrics\
 $git_branch\
-$git_commit\
 $git_state\
-$git_metrics\
 $git_status\
-$hg_branch\
-$pijul_channel\
-$docker_context\
-$package\
-$c\
-$cmake\
-$cobol\
-$daml\
-$dart\
-$deno\
-$dotnet\
-$elixir\
-$elm\
-$erlang\
-$fennel\
-$gleam\
-$golang\
-$guix_shell\
-$haskell\
-$haxe\
-$helm\
-$java\
-$julia\
-$kotlin\
-$gradle\
-$lua\
-$nim\
-$nodejs\
-$ocaml\
-$opa\
-$perl\
-$php\
-$pulumi\
-$purescript\
-$python\
-$quarto\
-$raku\
-$rlang\
-$red\
-$ruby\
-$rust\
-$scala\
-$solidity\
-$swift\
-$terraform\
-$typst\
-$vlang\
-$vagrant\
-$zig\
-$buf\
-$nix_shell\
-$conda\
-$meson\
-$spack\
-$memory_usage\
-$aws\
-$gcloud\
-$openstack\
-$azure\
-$nats\
-$direnv\
-$env_var\
-$crystal\
-$custom\
-$sudo\
 $cmd_duration\
 $line_break\
-$jobs\
-$battery\
-$time\
-$status\
-$os\
-$container\
-$shell\
+$python\
 $character"""
 
-[battery]
-full_symbol = "• "
-charging_symbol = "⇡ "
-discharging_symbol = "⇣ "
-unknown_symbol = "❓ "
-empty_symbol = "❗ "
+[directory]
+style = "blue"
 
-[erlang]
-symbol = "ⓔ "
+[character]
+success_symbol = "[❯](purple)"
+error_symbol = "[❯](red)"
+vimcmd_symbol = "[❮](green)"
 
-[nodejs]
-symbol = "[⬢](bold green) "
+[git_branch]
+format = "[$branch]($style)"
+style = "bright-black"
 
-[pulumi]
-symbol = "🧊 "
+[git_status]
+format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
+style = "cyan"
+conflicted = "​"
+untracked = "​"
+modified = "​"
+staged = "​"
+renamed = "​"
+deleted = "​"
+stashed = "≡"
 
-[typst]
-symbol = "t "
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bright-black"
+
+[cmd_duration]
+format = "[$duration]($style) "
+style = "yellow"
+
+[python]
+format = "[$virtualenv]($style) "
+style = "bright-black"
