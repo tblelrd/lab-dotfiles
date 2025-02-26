@@ -22,7 +22,7 @@ rm ./install.sh
 
 bold "-> Checking if fastfetch exists"
 if [ ! -f "$BIN_DIR/fastfetch" ]; then
-  bold "-> Installing neofetch (fastfetch)"
+  bold "-> Installing fastfetch"
   bold "---> Cloning repository..."
   git clone --depth 1 https://github.com/fastfetch-cli/fastfetch.git fastfetch &> /dev/null
 

@@ -6,6 +6,7 @@ START=$(date +%s%3N)
 # The network home directory
 NET_HOME="/cs/home/$USER"
 
+mkdir -p "$NET_HOME/dotfiles"
 pushd "$NET_HOME/dotfiles"
 echo Fetching latest version...
 git reset --hard HEAD
@@ -19,4 +20,6 @@ TIME=$(("$(date +%s%3N)" - START))
 echo Done in ${TIME}ms!
 echo
 
+# Actually leave the dotfiles directory
+popd
 "$NET_HOME/dotfiles/fish.sh"
