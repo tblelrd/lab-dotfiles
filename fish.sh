@@ -14,11 +14,14 @@ export BIN_DIR="$NET_HOME/usr/bin"
 
 bold "Downloading Dependencies..."
 
-bold "-> Downloading Starship..."
-curl -sSOJ https://starship.rs/install.sh 
-chmod +x ./install.sh
-./install.sh --yes > /dev/null
-rm ./install.sh
+bold "-> Checking if starship exists"
+if ! command -v starship 2>&1 >/dev/null; then
+  bold "-> Downloading Starship..."
+  curl -sSOJ https://starship.rs/install.sh 
+  chmod +x ./install.sh
+  ./install.sh --yes > /dev/null
+  rm ./install.sh
+fi
 
 bold "-> Checking if fastfetch exists"
 if [ ! -f "$BIN_DIR/fastfetch" ]; then
