@@ -45,10 +45,7 @@ bold "Making config directories..."
 bold "-> Making the fish directory"
 mkdir -p ~/.config/fish
 
-
-bold
 bold "-> Creating symlinks..." 
-
 
 bold "---> Symlinking config.fish..."
 ln -sf $NET_HOME/dotfiles/fish/config.fish $HOME/.config/fish/config.fish
