@@ -28,7 +28,7 @@ cmake ..
 cmake --build . --target fastfetch "-j$(nproc)"
 
 echo "---> Creating Symlinks"
-ln -sf ./fastfetch "$BIN_DIR/fastfetch"
+ln -sf "$(pwd)/fastfetch" "$BIN_DIR/fastfetch"
 
 echo "Making config directories..."
 
