@@ -5,22 +5,26 @@ START=$(date +%s%3N)
 NET_HOME="/cs/home/$USER/"
 HOME="/home/$USER/"
 
+function bold () {
+  echo -E "\e[97m$1\e[0m"
+}
+
 # BIN PATH INNIT
 export BIN_DIR="$NET_HOME/usr/bin"
 
-echo "Downloading Dependencies..."
+bold "Downloading Dependencies..."
 
-echo "-> Downloading Starship..."
+bold "-> Downloading Starship..."
 curl -sSOJ https://starship.rs/install.sh 
 chmod +x ./install.sh
 ./install.sh --yes > /dev/null
 rm ./install.sh
 
-echo "-> Installing neofetch (fastfetch)"
-echo "---> Cloning repository..."
+bold "-> Installing neofetch (fastfetch)"
+bold "---> Cloning repository..."
 git clone --depth 1 https://github.com/fastfetch-cli/fastfetch.git fastfetch &> /dev/null
 
-echo "---> Starting Build"
+bold "---> Starting Build"
 pushd fastfetch
 mkdir -p build/
 pushd build/
@@ -28,32 +32,32 @@ cmake .. &> /dev/null
 cmake --build . --target fastfetch "-j$(nproc)" &> /dev/null
 
 
-echo "---> Copying binaries"
+bold "---> Copying binaries"
 cp "$(pwd)/fastfetch" "$BIN_DIR/fastfetch"
 
-echo "---> Cleaning up"
+bold "---> Cleaning up"
 popd 
 popd 
 rm -rf fastfetch
 
-echo "Making config directories..."
+bold "Making config directories..."
 
-echo "-> Making the fish directory"
+bold "-> Making the fish directory"
 mkdir -p ~/.config/fish
 
 
-echo
-echo "-> Creating symlinks..." 
+bold
+bold "-> Creating symlinks..." 
 
 
-echo "---> Symlinking config.fish..."
+bold "---> Symlinking config.fish..."
 ln -sf $NET_HOME/dotfiles/fish/config.fish $HOME/.config/fish/config.fish
-echo "---> Symlinking starship.toml..."
+bold "---> Symlinking starship.toml..."
 ln -sf $NET_HOME/dotfiles/configs/starship.toml $HOME/.config/starship.toml
 
 
 
 TIME=$(("$(date +%s%3N)" - START))
-echo Done in ${TIME}ms!
+bold Done in ${TIME}ms!
 sleep 0.5
 fish
