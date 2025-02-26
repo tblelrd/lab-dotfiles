@@ -6,7 +6,7 @@ NET_HOME="/cs/home/$USER/"
 HOME="/home/$USER/"
 
 function bold () {
-  echo -e "\e[92m$1\e[0m"
+  echo -e "\e[93m$1\e[0m"
 }
 
 # BIN PATH INNIT
@@ -34,7 +34,7 @@ if [ ! -f "$BIN_DIR/fastfetch" ]; then
   mkdir -p build/
   pushd build/
   cmake .. &> /dev/null
-  cmake --build . --target fastfetch "-j$(nproc)" &> /dev/null
+  cmake --build . --target fastfetch "-j$(nproc)" 
 
 
   bold "---> Copying binaries"
