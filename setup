@@ -48,7 +48,7 @@ function init_script () {
 
   # Leave space for bottom lines
   for i in $(seq "$BOTTOM_LINES"); do
-    printf "\n"
+    echo
   done
 
   printf '\e[%s;%sr' "0" "$((LINES-BOTTOM_LINES))"
