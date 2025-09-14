@@ -27,8 +27,8 @@ function update_script () {
   print_bottom "Fetching the remote"
   git fetch origin main
 
-  local local_branch=$(git rev-branch main)
-  local remote_branch=$(git rev-branch origin/main)
+  local local_branch=$(git rev-parse main)
+  local remote_branch=$(git rev-parse origin/main)
 
   if [[ $local_branch = $remote_branch ]]; then
     print_bottom "Up to date"
