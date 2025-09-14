@@ -53,12 +53,21 @@ function init_script () {
 
 function deinit_script() {
   printf "\e7" # Save cursor location
+
+  local i
+  for i in $(seq BOTTOM_LINES); do
+    printf "\e[%s;1H" "$((LINES - i))"
+    sleep 1
+    printf "\e[2K"
+  done
+
   printf '\e[%s;%sr' "0" "$LINES"
   printf "\e8" # Restore cursor location
 }
 
 function main () {
   trap deinit_script exit # Yeah
+  trap deinit_script SIGINT # Yeah
   init_script
 
   update_script
