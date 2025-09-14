@@ -57,6 +57,7 @@ function deinit_script() {
   local i
   for i in $(seq "$BOTTOM_LINES"); do
     printf "\e[%s;1H" "$((LINES - i))"
+    sleep 1
     printf "\e[2K"
   done
 
