@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Define start time in milliseconds (the %3N cuts off the microseconds I think)
 START=$(date +%s%3N)

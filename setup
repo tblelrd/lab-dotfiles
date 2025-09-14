@@ -1,0 +1,65 @@
+#!/usr/bin/bash
+
+set -u
+NET_HOME="/cs/home/$USER"
+
+BOTTOM_LINES=5
+LINES=$(tput lines)
+
+function print_bottom () {
+  local text=$@
+  
+  printf "\e7" # Save cursor location
+  printf '\e[%s;%sr' "$((LINES-BOTTOM_LINES))" "$LINES" # New bottom scrollable region
+  printf "\e[%s;1H" "$LINES"
+
+  printf "$text\n"
+
+  printf '\e[%s;%sr' "0" "$((LINES-BOTTOM_LINES))" # Old top scrollable region
+  printf "\e8" # Restore cursor location
+}
+
+function update_script () {
+  # Enter dotfiles directory
+  print_bottom "Entering dotfiles directory"
+  pushd "$NET_HOME/dotfiles"
+
+  print_bottom "Fetching the remote"
+  git fetch origin main
+
+  local local_branch=$(git rev-branch main)
+  local remote_branch=$(git rev-branch origin/main)
+
+  if [[ $local_branch = $remote_branch ]]; then
+    print_bottom "Up to date"
+  else
+    print_bottom "Updating, going to run other script"
+    git pull origin main
+    ./setup
+    popd
+    exit
+ fi
+
+ sleep 10
+}
+
+function init_script () {
+  printf "\e7" # Save cursor location
+  
+  printf '\e[%s;%sr' "0" "$((LINES-BOTTOM_LINES))"
+
+  printf "\e8" # Restore cursor location
+}
+
+function deinit_script() {
+  printf '\e[%s;%sr' "0" "$LINES"
+}
+
+function main () {
+  trap deinit_script exit # Yeah
+  init_script
+
+  update_script
+}
+
+main 
