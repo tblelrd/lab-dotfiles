@@ -3,8 +3,8 @@
 set -u
 NET_HOME="/cs/home/$USER"
 
-BOTTOM_LINES=5
 LINES=$(tput lines)
+BOTTOM_LINES=$((LINES/2))
 
 function print_bottom () {
   local text=$@
@@ -68,6 +68,7 @@ function main () {
   trap deinit_script exit # Yeah
   trap deinit_script SIGINT # Yeah
   init_script
+  echo $BOTTOM_LINES
 
   update_script
 }
