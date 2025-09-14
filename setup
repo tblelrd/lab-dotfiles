@@ -52,7 +52,9 @@ function init_script () {
 }
 
 function deinit_script() {
+  printf "\e7" # Save cursor location
   printf '\e[%s;%sr' "0" "$LINES"
+  printf "\e8" # Restore cursor location
 }
 
 function main () {
