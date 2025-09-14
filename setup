@@ -44,16 +44,20 @@ function update_script () {
 }
 
 function init_script () {
+  # Leave space for bottom lines
+  for i in $(seq "$BOTTOM_LINES"); do
+    printf "\n"
+  done
+
   printf "\e7" # Save cursor location
 
   printf '\e[%s;%sr' "0" "$((LINES-BOTTOM_LINES))"
 
   printf "\e8" # Restore cursor location
 
-  # Leave space for bottom lines
-  for i in $(seq "$BOTTOM_LINES"); do
-    printf "\n\n"
-  done
+  # for i in $(seq "$BOTTOM_LINES"); do
+  printf "\e[%sA" "$BOTTOM_LINES"
+  # done
 }
 
 function deinit_script() {
