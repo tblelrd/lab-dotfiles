@@ -46,14 +46,14 @@ function update_script () {
 function init_script () {
   printf "\e7" # Save cursor location
 
+  printf '\e[%s;%sr' "0" "$((LINES-BOTTOM_LINES))"
+
+  printf "\e8" # Restore cursor location
+
   # Leave space for bottom lines
   for i in $(seq "$BOTTOM_LINES"); do
     printf "\n\n"
   done
-
-  printf '\e[%s;%sr' "0" "$((LINES-BOTTOM_LINES))"
-
-  printf "\e8" # Restore cursor location
 }
 
 function deinit_script() {
@@ -73,7 +73,6 @@ function main () {
   trap deinit_script exit # Yeah
   trap deinit_script SIGINT # Yeah
   init_script
-  echo $BOTTOM_LINES
 
   update_script
 }
