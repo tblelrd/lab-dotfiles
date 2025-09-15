@@ -104,6 +104,12 @@ function download_dependencies () {
     print_bottom "[DEP:Fastfetch] Moving binary to usr/bin"
     cp "$(pwd)/fastfetch" "$BIN_DIR/fastfetch"
 
+
+    print_bottom "[DEP::Fastfetch] Symlinking dotfiles"
+    mkdir -p ~/.config/fish
+    ln -sf $NET_HOME/dotfiles/fish/config.fish $HOME/.config/fish/config.fish
+
+
     print_bottom "[DEP:Fastfetch] Cleaning up"
     popd 
     popd 
