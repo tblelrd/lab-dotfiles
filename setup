@@ -170,13 +170,14 @@ function download_dependencies () {
   print_bottom "[DEP] Checking if zoxide exists"
   if [ ! -f "$BIN_DIR/zoxide" ]; then
     print_bottom "[DEP] Installing zoxide"
-    git clone "https://github.com/ajeetdsouza/zoxide.git"
-    pushd zoxide
-    print_bottom "[DEP::zoxide] Compiling zoxide"
-    cargo install --path . --root "$NET_HOME/usr"
+
+    curl -sSOJ https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh 
+    chmod +x ./install.sh
+    ./install.sh --bin-dir "$BIN_DIR"
+    rm ./install.sh
 
     print_bottom "[DEP::zoxide] Cleaning up"
-    popd zoxide
+    popd
     rm -rf 
   else
     print_bottom "[DEP] Skipping"
