@@ -165,8 +165,9 @@ function main () {
   # Dependencies
   download_dependencies
 
-  TIME=$(("$(date +%s%3N)" - START))
+  print_bottom "[LOG] All done!"
 
+  TIME=$(("$(date +%s%3N)" - START))
   printf "\n\nDone in \e[1;93m${TIME}ms!\e[0m\n"
 
   sleep 2
