@@ -80,7 +80,7 @@ function download_dependencies () {
     print_bottom "[DEP] Starship not installed, downloading.."
     curl -sSOJ https://starship.rs/install.sh 
     chmod +x ./install.sh
-    ./install.sh --yes
+    ./install.sh -b "$NET_HOME/usr/bin" --yes
     rm ./install.sh
   else 
     print_bottom "[DEP] Starship Installed, skipping..."
