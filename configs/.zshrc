@@ -94,11 +94,6 @@ alias tn='tmux new-session -s'
 alias tl='tmux list-sessions'
 alias ta='tmux attach-session'
 
-# SSH Servers
-alias sth="ssh jjxc1@jjxc1.teaching.cs.st-andrews.ac.uk"
-alias sshome="ssh jack@jasvk.duckdns.org -p 26"
-alias sshomel="ssh jack@192.168.1.184"
-
 # Environment variables
 export TERM=xterm-256color
 export RUSTC_WRAPPER=/usr/bin/sccache
