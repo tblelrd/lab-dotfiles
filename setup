@@ -170,7 +170,7 @@ function main () {
   TIME=$(("$(date +%s%3N)" - START))
   printf "\n\nDone in \e[1;93m${TIME}ms!\e[0m\n"
 
-  sleep 2
+  sleep 1
 }
 
 main 
