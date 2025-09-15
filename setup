@@ -26,20 +26,21 @@ function print_bottom () {
 
 function update_script () {
   # Enter dotfiles directory
-  print_bottom "Entering dotfiles directory"
+  print_bottom "[UPDATE] Entering dotfiles directory"
   pushd "$NET_HOME/dotfiles"
 
-  print_bottom "Fetching the remote"
+  print_bottom "[UPDATE] Fetching the remote"
   git fetch origin main
 
   local local_branch=$(git rev-parse main)
   local remote_branch=$(git rev-parse origin/main)
 
   if [[ $local_branch = $remote_branch ]]; then
-    print_bottom "Up to date"
+    print_bottom "[UPDATE] Up to date"
   else
-    print_bottom "Updating, going to run other script"
+    print_bottom "[UPDATE] Updating"
     git pull origin main
+    print_bottom "[UPDATE] Rerunning updated script"
     ./setup
     popd &> /dev/null
     exit
@@ -147,12 +148,19 @@ function download_dependencies () {
   ln -sf "$NET_HOME/dotfiles/configs/nvim" $HOME/.config/nvim
 }
 
+function link_script () {
+  print_bottom "[SETUP] Making sure that this script is in the bin folder"
+  ln -sf "$NET_HOME/dotfiles/setup" "/$HOME/$USER/usr/bin"
+}
+
 function main () {
   trap deinit_script exit # Yeah
   trap deinit_script SIGINT # Yeah
   init_script
 
   update_script
+
+  link_script
 
   # Dependencies
   download_dependencies
