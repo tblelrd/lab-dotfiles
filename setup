@@ -188,7 +188,7 @@ function main () {
   TIME=$(("$(date +%s%3N)" - START))
   printf "\nDone in \e[1;93m${TIME}ms!\e[0m\n"
 
-  print_bottom "\e[1;91;107m[LOG] Press enter to exit..."
+  print_bottom "\e[1;90;107m[LOG] Press enter to exit..."
   read ans
 }
 
