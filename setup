@@ -55,9 +55,8 @@ function init_script () {
 
   printf "\e8" # Restore cursor location
 
-  # for i in $(seq "$BOTTOM_LINES"); do
+  # Go back up the spaces made like 10 lines ago
   printf "\e[%sA" "$BOTTOM_LINES"
-  # done
 }
 
 function deinit_script() {
@@ -73,12 +72,30 @@ function deinit_script() {
   printf "\e8" # Restore cursor location
 }
 
+function download_dependencies () {
+  print_bottom "Downloading Dependencies..."
+
+  print_bottom "[DEP] Checking if starship exists."
+  if ! command -v starship > /dev/null; then
+    print_bottom "[DEP] Starship not installed, downloading.."
+    curl -sSOJ https://starship.rs/install.sh 
+    chmod +x ./install.sh
+    ./install.sh --yes
+    rm ./install.sh
+  else 
+    print_bottom "[DEP] Starship Installed, skipping..."
+  fi
+}
+
 function main () {
   trap deinit_script exit # Yeah
   trap deinit_script SIGINT # Yeah
   init_script
 
   update_script
+
+  # Dependencies
+  download_dependencies
 }
 
 main 
