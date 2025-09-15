@@ -150,7 +150,7 @@ function download_dependencies () {
 
 function link_script () {
   print_bottom "[SETUP] Making sure that this script is in the bin folder"
-  ln -sf "$NET_HOME/dotfiles/setup" "/$HOME/$USER/usr/bin"
+  ln -sf "$NET_HOME/dotfiles/setup" "$NET_HOME/usr/bin"
 }
 
 function main () {
