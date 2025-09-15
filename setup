@@ -113,9 +113,36 @@ function download_dependencies () {
     print_bottom "[DEP] Fastfetch installed, skipping"
   fi
 
+  print_bottom "[DEP] Checking if neovim exists"
+  if [! -f "$BIN_DIR/nvim"]; then
+    print_bottom "[DEP] Installing neovim"
+    git clone -b "stable" --depth=1 "https://github.com/neovim/neovim" neovim
+    pushd neovim
+    print_bottom "[DEP::Neovim] Setting up make/cmake"
+    make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_INSTALL_PREFIX="$NET_HOME/usr"
+    print_bottom "[DEP::Neovim] Installing to usr/bin"
+    make install
+
+    print_bottom "[DEP:Neovim] Cleaning up"
+    popd
+    rm -rf neovim
+  else
+    print_bottom "[DEP] Neovim installed, skipping"
+  fi
+
   print_bottom "[DEP::Configuration] Configuring Fastfetch"
   mkdir -p ~/.config/fastfetch
   ln -sf $NET_HOME/dotfiles/configs/fastfetch.jsonc $HOME/.config/fastfetch/config.jsonc
+
+  print_bottom "[DEP::Configuration] Configuring Fish"
+  mkdir -p ~/.config/fish
+  ln -sf $NET_HOME/dotfiles/fish/config.fish $HOME/.config/fish/config.fish
+
+  print_bottom "[DEP::Configuration] Configuring Starship"
+  ln -sf $NET_HOME/dotfiles/configs/starship.toml $HOME/.config/starship.toml
+
+  print_bottom "[DEP::Configuration] Configuring Neovim"
+  ln -sf "$NET_HOME/dotfiles/configs/nvim" $HOME/.config/nvim
 }
 
 function main () {
