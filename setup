@@ -5,7 +5,7 @@ NET_HOME="/cs/home/$USER"
 BIN_DIR="$NET_HOME/usr/bin"
 
 LINES=$(tput lines)
-BOTTOM_LINES=$((LINES/2))
+BOTTOM_LINES=$((LINES/4))
 
 function print_bottom () {
   local text=$@
@@ -87,7 +87,7 @@ function download_dependencies () {
     print_bottom "[DEP] Starship Installed, skipping"
   fi
 
-  print_bottom "[DEP]] Checking if fastfetch exists"
+  print_bottom "[DEP] Checking if fastfetch exists"
   if [ ! -f "$BIN_DIR/fastfetch" ]; then
     print_bottom "[DEP:Fastfetch] Installing fastfetch"
     print_bottom "[DEP:Fastfetch] Cloning repository..."
