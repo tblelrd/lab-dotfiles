@@ -1,6 +1,8 @@
 #!/usr/bin/bash
 
 set -u
+START=$(date +%s%3N)
+
 NET_HOME="/cs/home/$USER"
 BIN_DIR="$NET_HOME/usr/bin"
 
