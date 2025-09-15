@@ -114,7 +114,7 @@ function download_dependencies () {
   fi
 
   print_bottom "[DEP] Checking if neovim exists"
-  if [ ! -f "$BIN_DIR/nvim"]; then
+  if [ ! -f "$BIN_DIR/nvim" ]; then
     print_bottom "[DEP] Installing neovim"
     git clone -b "stable" --depth=1 "https://github.com/neovim/neovim" neovim
     pushd neovim
