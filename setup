@@ -158,7 +158,7 @@ function download_dependencies () {
     git clone "https://github.com/eza-community/eza.git"
     pushd eza
     print_bottom "[DEP::eza] Compiling eza"
-    cargo install --path "$NET_HOME/usr"
+    cargo install --path . --root "$NET_HOME/usr"
 
     print_bottom "[DEP::eza] Cleaning up"
     popd
