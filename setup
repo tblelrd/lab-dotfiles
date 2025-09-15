@@ -77,7 +77,7 @@ function deinit_script() {
 }
 
 function download_dependencies () {
-  print_bottom "Downloading Dependencies"
+  print_bottom "[DEP] Downloading Dependencies"
 
   print_bottom "[DEP] Checking if starship exists"
   if ! command -v starship > /dev/null; then
