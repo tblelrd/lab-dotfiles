@@ -13,6 +13,7 @@ function print_bottom () {
   local text=$@
   
   printf "\e7" # Save cursor location
+  # +1 because off by one error (cant be bothered looking up why).
   printf '\e[%s;%sr' "$((LINES-BOTTOM_LINES+1))" "$LINES" # New bottom scrollable region
   printf "\e[%s;1H" "$LINES"
 
