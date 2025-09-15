@@ -114,7 +114,7 @@ function download_dependencies () {
   fi
 
   print_bottom "[DEP::Configuration] Configuring Fastfetch"
-  mkdir -p ~/.config/fish
+  mkdir -p ~/.config/fastfetch
   ln -sf $NET_HOME/dotfiles/configs/fastfetch.jsonc $HOME/.config/fastfetch/config.jsonc
 }
 
