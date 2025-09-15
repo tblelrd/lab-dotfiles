@@ -154,6 +154,10 @@ function main () {
 
   # Dependencies
   download_dependencies
+
+  TIME=$(("$(date +%s%3N)" - START))
+  print_bottom "Done in ${TIME}ms!"
+  sleep 1
 }
 
 main 
