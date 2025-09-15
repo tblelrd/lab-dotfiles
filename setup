@@ -113,9 +113,9 @@ function download_dependencies () {
     print_bottom "[DEP] Fastfetch installed, skipping"
   fi
 
-  print_bottom "[DEP::Fastfetch] Configuring Fastfetch"
+  print_bottom "[DEP::Configuration] Configuring Fastfetch"
   mkdir -p ~/.config/fish
-  ln -sf $NET_HOME/dotfiles/fish/config.fish $HOME/.config/fish/config.fish
+  ln -sf $NET_HOME/dotfiles/configs/fastfetch.jsonc $HOME/.config/fastfetch/config.jsonc
 }
 
 function main () {
