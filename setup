@@ -152,6 +152,21 @@ function download_dependencies () {
     print_bottom "[DEP] fzf installed, skipping"
   fi
 
+  print_bottom "[DEP] Checking if eza exists"
+  if [ ! -f "$BIN_DIR/eza" ]; then
+    print_bottom "[DEP] Installing eza"
+    git clone "https://github.com/eza-community/eza.git"
+    pushd eza
+    print_bottom "[DEP::eza] Compiling eza"
+    cargo install --path "$NET_HOME/usr"
+
+    print_bottom "[DEP::eza] Cleaning up"
+    popd
+    rm -rf eza
+  else
+    print_bottom "[DEP] eza installed, skipping"
+  fi
+
   print_bottom "[DEP::Configuration] Configuring Fastfetch"
   mkdir -p ~/.config/fastfetch
   ln -sf $NET_HOME/dotfiles/configs/fastfetch.jsonc $HOME/.config/fastfetch/config.jsonc
