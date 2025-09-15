@@ -41,8 +41,6 @@ function update_script () {
     popd
     exit
  fi
-
- sleep 1
 }
 
 function init_script () {
@@ -75,18 +73,43 @@ function deinit_script() {
 }
 
 function download_dependencies () {
-  print_bottom "Downloading Dependencies..."
+  print_bottom "Downloading Dependencies"
 
-  print_bottom "[DEP] Checking if starship exists."
+  print_bottom "[DEP] Checking if starship exists"
   if ! command -v starship > /dev/null; then
-    print_bottom "[DEP] Starship not installed, downloading.."
+    print_bottom "[DEP] Starship not installed, downloading"
     curl -sSOJ https://starship.rs/install.sh 
     chmod +x ./install.sh
     ./install.sh -b "$NET_HOME/usr/bin" --yes
     rm ./install.sh
   else 
-    print_bottom "[DEP] Starship Installed, skipping..."
+    print_bottom "[DEP] Starship Installed, skipping"
   fi
+
+  print_bottom "[DEP]] Checking if fastfetch exists"
+  if [ ! -f "$BIN_DIR/fastfetch" ]; then
+    print_bottom "[DEP:Fastfetch] Installing fastfetch"
+    print_bottom "[DEP:Fastfetch] Cloning repository..."
+    git clone --depth 1 https://github.com/fastfetch-cli/fastfetch.git fastfetch
+
+    print_bottom "[DEP:Fastfetch] Starting Build"
+    pushd fastfetch
+    mkdir -p build/
+    pushd build/
+    cmake ..
+    cmake --build . --target fastfetch "-j$(nproc)" 
+
+
+    print_bottom "[DEP:Fastfetch] Moving binary to usr/bin"
+    cp "$(pwd)/fastfetch" "$BIN_DIR/fastfetch"
+
+    print_bottom "[DEP:Fastfetch] Cleaning up"
+    popd 
+    popd 
+    rm -rf fastfetch
+  fi
+
+  sleep 1
 }
 
 function main () {
