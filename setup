@@ -41,7 +41,7 @@ function update_script () {
     print_bottom "Updating, going to run other script"
     git pull origin main
     ./setup
-    popd
+    popd &> /dev/null
     exit
  fi
 }
@@ -159,7 +159,7 @@ function main () {
 
   TIME=$(("$(date +%s%3N)" - START))
 
-  printf "\n\nDone in \e[1;93m${TIME}\e[0mms!"
+  printf "\n\nDone in \e[1;93m${TIME}\e[0mms!\n"
   sleep 1
 }
 
