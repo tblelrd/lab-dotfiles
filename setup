@@ -165,6 +165,10 @@ function download_dependencies () {
 
   print_bottom "[DEP::Configuration] Configuring Neovim"
   ln -sf "$NET_HOME/dotfiles/configs/nvim" $HOME/.config/nvim
+
+  print_bottom "[DEP::Configuration] Configuring Zsh"
+  ln -sf $NET_HOME/dotfiles/configs/.zshrc $HOME/.zshrc
+  ln -sf $NET_HOME/dotfiles/configs/.p10k.zsh $HOME/.p10k.zsh
 }
 
 function link_script () {
