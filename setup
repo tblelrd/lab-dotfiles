@@ -167,6 +167,21 @@ function download_dependencies () {
     print_bottom "[DEP] Skipping"
   fi
 
+  print_bottom "[DEP] Checking if zoxide exists"
+  if [ ! -f "$BIN_DIR/zoxide" ]; then
+    print_bottom "[DEP] Installing zoxide"
+    git clone "https://github.com/ajeetdsouza/zoxide.git"
+    pushd zoxide
+    print_bottom "[DEP::zoxide] Compiling zoxide"
+    cargo install --path . --root "$NET_HOME/usr"
+
+    print_bottom "[DEP::zoxide] Cleaning up"
+    popd zoxide
+    rm -rf 
+  else
+    print_bottom "[DEP] Skipping"
+  fi
+
   print_bottom "[DEP::Configuration] Configuring Fastfetch"
   mkdir -p ~/.config/fastfetch
   ln -sf $NET_HOME/dotfiles/configs/fastfetch.jsonc $HOME/.config/fastfetch/config.jsonc
