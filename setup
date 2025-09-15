@@ -18,7 +18,7 @@ function print_bottom () {
 
   printf "\e[1;94m$text\e[0m\n"
 
-  printf '\e[%s;%sr' "0" "$((LINES-BOTTOM_LINES+1))" # Old top scrollable region
+  printf '\e[%s;%sr' "0" "$((LINES-BOTTOM_LINES))" # Old top scrollable region
   printf "\e8" # Restore cursor location
 }
 
