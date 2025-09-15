@@ -38,6 +38,7 @@ function update_script () {
     print_bottom "[UPDATE] Up to date"
   else
     print_bottom "[UPDATE] Updating"
+    git reset --hard HEAD # To remove any changes
     git pull origin main
     print_bottom "[UPDATE] Rerunning updated script"
     ./setup
