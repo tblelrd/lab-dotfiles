@@ -125,7 +125,7 @@ function download_dependencies () {
     print_bottom "[DEP::Neovim] Installing to usr/bin"
     make install
 
-    print_bottom "[DEP:Neovim] Cleaning up"
+    print_bottom "[DEP::Neovim] Cleaning up"
     popd
     rm -rf neovim
   else
@@ -158,7 +158,8 @@ function main () {
   download_dependencies
 
   TIME=$(("$(date +%s%3N)" - START))
-  print_bottom "Done in ${TIME}ms!"
+
+  printf "\n\nDone in \e[1;93m${TIME}\e[0mms!"
   sleep 1
 }
 
