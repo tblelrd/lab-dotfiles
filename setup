@@ -2,6 +2,7 @@
 
 set -u
 NET_HOME="/cs/home/$USER"
+BIN_DIR="$NET_HOME/usr/bin"
 
 LINES=$(tput lines)
 BOTTOM_LINES=$((LINES/2))
@@ -80,7 +81,7 @@ function download_dependencies () {
     print_bottom "[DEP] Starship not installed, downloading"
     curl -sSOJ https://starship.rs/install.sh 
     chmod +x ./install.sh
-    ./install.sh -b "$NET_HOME/usr/bin" --yes
+    ./install.sh -b "$BIN_DIR" --yes
     rm ./install.sh
   else 
     print_bottom "[DEP] Starship Installed, skipping"
