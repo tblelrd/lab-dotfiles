@@ -86,7 +86,7 @@ function download_dependencies () {
     ./install.sh -b "$BIN_DIR" --yes
     rm ./install.sh
   else 
-    print_bottom "[DEP] Starship installed, skipping"
+    print_bottom "[DEP] Skipping"
   fi
 
   print_bottom "[DEP] Checking if fastfetch exists"
@@ -112,7 +112,7 @@ function download_dependencies () {
     popd 
     rm -rf fastfetch
   else
-    print_bottom "[DEP] Fastfetch installed, skipping"
+    print_bottom "[DEP] Skipping"
   fi
 
   print_bottom "[DEP] Checking if neovim exists"
@@ -129,7 +129,7 @@ function download_dependencies () {
     popd
     rm -rf neovim
   else
-    print_bottom "[DEP] Neovim installed, skipping"
+    print_bottom "[DEP] Skipping"
   fi
 
   print_bottom "[DEP] Checking if fzf exists"
@@ -149,7 +149,7 @@ function download_dependencies () {
     popd
     rm -rf fzf
   else
-    print_bottom "[DEP] fzf installed, skipping"
+    print_bottom "[DEP] Skipping"
   fi
 
   print_bottom "[DEP] Checking if eza exists"
@@ -164,7 +164,7 @@ function download_dependencies () {
     popd
     rm -rf eza
   else
-    print_bottom "[DEP] eza installed, skipping"
+    print_bottom "[DEP] Skipping"
   fi
 
   print_bottom "[DEP::Configuration] Configuring Fastfetch"
