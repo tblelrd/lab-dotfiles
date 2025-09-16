@@ -184,31 +184,31 @@ function download_dependencies () {
     print_bottom "[DEP] Skipping"
   fi
 
-  print_bottom "[DEP::Configuration] Configuring Fastfetch"
+  print_bottom "[CONF] Configuring Fastfetch"
   mkdir -p ~/.config/fastfetch
   ln -sf $NET_HOME/dotfiles/configs/fastfetch.jsonc $HOME/.config/fastfetch/config.jsonc
 
-  print_bottom "[DEP::Configuration] Configuring Fish"
+  print_bottom "[CONF] Configuring Fish"
   mkdir -p ~/.config/fish
   ln -sf $NET_HOME/dotfiles/fish/config.fish $HOME/.config/fish/config.fish
 
-  print_bottom "[DEP::Configuration] Configuring Starship"
+  print_bottom "[CONF] Configuring Starship"
   ln -sf $NET_HOME/dotfiles/configs/starship.toml $HOME/.config/starship.toml
 
-  print_bottom "[DEP::Configuration] Configuring Neovim"
+  print_bottom "[CONF] Configuring Neovim"
   ln -sf "$NET_HOME/dotfiles/configs/nvim" $HOME/.config/nvim
 
-  print_bottom "[DEP::Configuration] Configuring Zsh"
+  print_bottom "[CONF] Configuring Zsh"
   ln -sf $NET_HOME/dotfiles/configs/.zshrc $HOME/.zshrc
   ln -sf $NET_HOME/dotfiles/configs/.p10k.zsh $HOME/.p10k.zsh
 
-  print_bottom "[DEP::Configuration] Configuring Tmux"
+  print_bottom "[CONF] Configuring Tmux"
   ln -sf $NET_HOME/dotfiles/configs/.tmux.conf $HOME/.tmux.conf
 
-  print_bottom "[DEP::Configuration] Downloading Hack Nerd Font for neovim"
+  print_bottom "[CONF] Downloading Hack Nerd Font for neovim"
   mkdir -p $HOME/.local/share/fonts/
   cp $NET_HOME/dotfiles/configs/HackNerdFont-Regular.ttf $HOME/.local/share/fonts/HackNerdFont-Regular.ttf 
-  print_bottom "[DEP::Configuration] Loading font"
+  print_bottom "[CONF] Loading font"
   fc-cache
 }
 
