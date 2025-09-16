@@ -7,7 +7,7 @@ NET_HOME="/cs/home/$USER"
 BIN_DIR="$NET_HOME/usr/bin"
 
 LINES=$(tput lines)
-BOTTOM_LINES=$((LINES/4))
+BOTTOM_LINES=$((LINES/2))
 
 function print_bottom () {
   local text=$@
