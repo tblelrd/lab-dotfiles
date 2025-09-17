@@ -55,11 +55,14 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
-# Completion styling
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-Z}'
+# Completion styling (default fzf-tab config)
+zstyle ':completion:*:git-checkout:*' sort false
+zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --color=always $realpath'
+zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2 --bind=tab:accept
+zstyle ':fzf-tab:*' switch-group '<' '>'
 
 # Keybinding
 bindkey -e
@@ -101,7 +104,7 @@ export MAKEFLAGS="--jobs=$(nproc)" # For multi-threading make compilation. (Will
 export MANPAGER='nvim +Man!'
 
 # Shell integrations
-eval "$(fzf --zsh)"
+# eval "$(fzf --zsh)"
 if [ -f "/usr/bin/mise" ]; then
 	eval "$(/usr/bin/mise activate zsh)"
 fi
