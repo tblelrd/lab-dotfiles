@@ -38,7 +38,7 @@ return {
     -- enable servers that you already have installed without mason
     servers = {
       -- "pyright"
-      "qmlls6"
+      -- "qmlls6"
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
@@ -46,13 +46,13 @@ return {
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
 
       -- Used chatgpt for this, look into this later i guess
-      ["qmlls6"] = {
-        cmd = { "qmlls6", "-E" },
-        filetypes = { "qml" },
-        root_dir = require("lspconfig.util").root_pattern(".git", "."),
-        -- you can set additional options here if qmlls6 supports them
-        settings = {},
-      }
+      -- ["qmlls6"] = {
+      --   cmd = { "qmlls6", "-E" },
+      --   filetypes = { "qml" },
+      --   root_dir = require("lspconfig.util").root_pattern(".git", "."),
+      --   -- you can set additional options here if qmlls6 supports them
+      --   settings = {},
+      -- }
     },
     -- customize how language servers are attached
     handlers = {
@@ -64,6 +64,19 @@ return {
       -- pyright = function(_, opts) require("lspconfig").pyright.setup(opts) end -- or a custom handler function can be passed
       clangd = function(_, opts) require("lspconfig").clangd.setup(opts) end
     },
+    -- mason_lspconfig = {
+    --  servers = {
+    --     jdtls = {
+    --       config = {
+    --         java = {
+    --           autobuild = {
+    --             enabled = false,
+    --           }
+    --         }
+    --       }
+    --     }
+    --   }
+    -- },
     -- Configure buffer local auto commands to add when attaching a language server
     autocmds = {
       -- first key is the `augroup` to add the auto commands to (:h augroup)

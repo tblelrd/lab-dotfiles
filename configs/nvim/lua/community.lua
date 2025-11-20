@@ -15,5 +15,8 @@ return {
   { import = "astrocommunity.colorscheme.horizon-nvim" },
   { import = "astrocommunity.colorscheme.gruvbox-nvim" },
   { import = "astrocommunity.colorscheme.vscode-nvim" },
-  -- import/override with your plugins folder
+  { import = "astrocommunity.pack.nix" },
+  -- { import = "astrocommunity.pack.java" },
+  -- { import = "astrocommunity.lsp.nvim-java" },
+   -- import/override with your plugins folder
 }
