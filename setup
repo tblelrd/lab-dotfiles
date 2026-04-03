@@ -169,7 +169,18 @@ function download_dependencies () {
 
     print_bottom "[DEP::zoxide] Cleaning up"
     popd
-    rm -rf 
+  fi
+
+  print_bottom "[DEP] Checking if lazygit exists"
+  if [ ! -f "$BIN_DIR/lazygit" ]; then
+    print_bottom "[DEP] Installing lazygit"
+    git clone --depth=1 "https://github.com/jesseduffield/lazygit.git"
+    pushd lazygit
+    print_bottom "[DEP::lazygit] Compiling lazygit"
+    go build
+    mv "lazygit" "$BIN_DIR"
+    popd
+    rm -rf lazygit
   fi
 
   print_bottom "[CONF] Configuring Fastfetch"
