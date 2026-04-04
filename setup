@@ -177,7 +177,7 @@ function download_dependencies () {
   print_bottom "[DEP] Checking if lazygit exists"
   if [ ! -f "$BIN_DIR/lazygit" ]; then
     print_bottom "[DEP] Installing lazygit"
-    git clone --depth=1 "https://github.com/jesseduffield/lazygit.git"
+    git clone --depth=1 "https://github.com/jesseduffield/lazygit.git" lazygit
     pushd lazygit
     print_bottom "[DEP::lazygit] Compiling lazygit"
     go build
@@ -189,13 +189,13 @@ function download_dependencies () {
   print_bottom "[DEP] Checking if tealdeer (tldr) exists"
   if [ ! -f "$BIN_DIR/tldr" ]; then
     print_bottom "[DEP] Installing tealdeer"
-    git clone --depth=1 "https://github.com/tealdeer-rs/tealdeer.git"
-    pushd lazygit
+    git clone --depth=1 "https://github.com/tealdeer-rs/tealdeer.git" tealdeer
+    pushd tealdeer
     print_bottom "[DEP::tealdeer] Compiling tealdeer"
     cargo build --release
     mv "target/release/tldr" "$BIN_DIR"
     popd
-    rm -rf lazygit
+    rm -rf tealdeer
   fi
 
   print_bottom "[CONF] Configuring Fastfetch"
