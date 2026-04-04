@@ -186,6 +186,18 @@ function download_dependencies () {
     rm -rf lazygit
   fi
 
+  print_bottom "[DEP] Checking if tealdeer (tldr) exists"
+  if [ ! -f "$BIN_DIR/tldr" ]; then
+    print_bottom "[DEP] Installing tealdeer"
+    git clone --depth=1 "https://github.com/tealdeer-rs/tealdeer.git"
+    pushd lazygit
+    print_bottom "[DEP::tealdeer] Compiling tealdeer"
+    cargo build --release
+    mv "target/release/tldr" "$BIN_DIR"
+    popd
+    rm -rf lazygit
+  fi
+
   print_bottom "[CONF] Configuring Fastfetch"
   mkdir -p ~/.config/fastfetch
   ln -sf $NET_HOME/dotfiles/configs/fastfetch.jsonc $HOME/.config/fastfetch/config.jsonc
@@ -207,7 +219,7 @@ function download_dependencies () {
   print_bottom "[CONF] Configuring Tmux"
   ln -sf $NET_HOME/dotfiles/configs/.tmux.conf $HOME/.tmux.conf
 
-  print_bottom "[CONF] Downloading Hack Nerd Font for neovim"
+  print_bottom "[CONF] Installing Hack Nerd Font for neovim"
   mkdir -p $HOME/.local/share/fonts/
   cp $NET_HOME/dotfiles/configs/HackNerdFont-Regular.ttf $HOME/.local/share/fonts/HackNerdFont-Regular.ttf 
   print_bottom "[CONF] Loading font"
