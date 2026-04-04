@@ -110,11 +110,6 @@ if [ -f "/usr/bin/mise" ]; then
 fi
 eval "$(zoxide init zsh)"
 
-# Start uwsm (Pipe to dev null because it does that now)
-if uwsm check may-start > /dev/null && uwsm select; then
-	exec systemd-cat -t uwsm_start uwsm start default
-fi
-
 zinit cdreplay -q
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
