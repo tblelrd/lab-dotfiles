@@ -9,6 +9,8 @@ BIN_DIR="$NET_HOME/usr/bin"
 LINES=$(tput lines)
 BOTTOM_LINES=$((LINES/2))
 
+SHOULD_INIT=$([[ "$1" == "--no-init" ]] && echo true || echo false)
+
 function print_bottom () {
   local text=$@
   
@@ -41,7 +43,7 @@ function update_script () {
     git reset --hard HEAD # To remove any changes
     git pull origin main
     print_bottom "[UPDATE] Rerunning updated script"
-    ./setup
+    ./setup "--no-init"
     popd &> /dev/null
     exit
  fi
@@ -217,9 +219,9 @@ function link_script () {
 }
 
 function main () {
-  trap deinit_script exit # Yeah
-  trap deinit_script SIGINT # Yeah
-  init_script
+  SHOULD_INIT && trap deinit_script exit # Yeah
+  SHOULD_INIT && trap deinit_script SIGINT # Yeah
+  SHOULD_INIT && init_script
 
   update_script
 
