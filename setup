@@ -227,7 +227,7 @@ function main () {
 
   link_script
 
-  print_bottom "[TEST] TESTING!!!!"
+  print_bottom "[TEST] ${1-default}"
   # Dependencies
   download_dependencies
 
