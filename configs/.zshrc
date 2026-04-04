@@ -4,9 +4,11 @@
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+NET_HOME="/cs/home/$USER"
 
 # Directory where zinit and it's plugins go
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+# ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+ZINIT_HOME="${NET_HOME}/zinit/zinit.git"
 
 # Download zinit, if doesn't exist.
 if [ ! -d $ZINIT_HOME ]; then 
