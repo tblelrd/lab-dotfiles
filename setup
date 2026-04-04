@@ -151,14 +151,13 @@ function download_dependencies () {
   print_bottom "[DEP] Checking if eza exists"
   if [ ! -f "$BIN_DIR/eza" ]; then
     print_bottom "[DEP] Installing eza"
-    git clone "https://github.com/eza-community/eza.git"
-    pushd eza
-    print_bottom "[DEP::eza] Compiling eza"
-    cargo install --path . --root "$NET_HOME/usr"
+    curl -LO "https://github.com/eza-community/eza/releases/download/v0.23.4/eza_x86_64-unknown-linux-gnu.zip"
+    unzip eza_x86_64-unknown-linux-gnu.zip
+
+    mv eza "$BIN_DIR"
 
     print_bottom "[DEP::eza] Cleaning up"
-    popd
-    rm -rf eza
+    rm eza_x86_64-unknown-linux-gnu.zip
   fi
 
   print_bottom "[DEP] Checking if zoxide exists"
@@ -168,9 +167,10 @@ function download_dependencies () {
     curl -sSOJ https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh 
     chmod +x ./install.sh
     ./install.sh --bin-dir "$BIN_DIR"
-    rm ./install.sh
 
     print_bottom "[DEP::zoxide] Cleaning up"
+    rm ./install.sh
+
     popd
   fi
 
@@ -182,6 +182,8 @@ function download_dependencies () {
     print_bottom "[DEP::lazygit] Compiling lazygit"
     go build
     mv "lazygit" "$BIN_DIR"
+
+    print_bottom "[DEP::lazygit] Cleaning up"
     popd
     rm -rf lazygit
   fi
@@ -194,6 +196,8 @@ function download_dependencies () {
     print_bottom "[DEP::tealdeer] Compiling tealdeer"
     cargo build --release
     mv "target/release/tldr" "$BIN_DIR"
+
+    print_bottom "[DEP::tealdeer] Cleaning up"
     popd
     rm -rf tealdeer
   fi
