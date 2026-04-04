@@ -10,7 +10,7 @@ LINES=$(tput lines)
 BOTTOM_LINES=$((LINES/2))
 
 ARG=${1:-}
-SHOULD_INIT=$([[ "$arg" == "--no-init" ]] && echo false || echo true)
+SHOULD_INIT=$([[ "$ARG" == "--no-init" ]] && echo false || echo true)
 
 function print_bottom () {
   local text=$@
