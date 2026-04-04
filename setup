@@ -219,9 +219,9 @@ function link_script () {
 }
 
 function main () {
-  SHOULD_INIT && trap deinit_script exit # Yeah
-  SHOULD_INIT && trap deinit_script SIGINT # Yeah
-  SHOULD_INIT && init_script
+  $SHOULD_INIT && trap deinit_script exit # Yeah
+  $SHOULD_INIT && trap deinit_script SIGINT # Yeah
+  $SHOULD_INIT && init_script
 
   update_script
 
