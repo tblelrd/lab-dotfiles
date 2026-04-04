@@ -9,7 +9,8 @@ BIN_DIR="$NET_HOME/usr/bin"
 LINES=$(tput lines)
 BOTTOM_LINES=$((LINES/2))
 
-SHOULD_INIT=$([[ "${1-default}" == "--no-init" ]] && echo false || echo true)
+ARG=${1:-}
+SHOULD_INIT=$([[ "$arg" == "--no-init" ]] && echo false || echo true)
 
 function print_bottom () {
   local text=$@
