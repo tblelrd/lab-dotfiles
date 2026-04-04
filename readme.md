@@ -21,3 +21,11 @@ Then run the setup script
 ```sh
 ./setup
 ```
+
+From then on, you can just run
+
+```sh
+setup
+```
+
+On any lab pc, and it should set up the dotfiles for that pc.
