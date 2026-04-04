@@ -43,7 +43,7 @@ function update_script () {
     git reset --hard HEAD # To remove any changes
     git pull origin main
     print_bottom "[UPDATE] Rerunning updated script"
-    ./setup "--no-init"
+    ./setup --no-init
     popd &> /dev/null
     exit
  fi
