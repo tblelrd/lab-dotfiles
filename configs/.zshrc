@@ -34,6 +34,10 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
+
+# Load completions
+autoload -U compinit && compinit
+
 zinit light Aloxaf/fzf-tab
 
 # Add in snippets
@@ -55,14 +59,11 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
-# Completion styling (default fzf-tab config)
-zstyle ':completion:*:git-checkout:*' sort false
-zstyle ':completion:*:descriptions' format '[%d]'
+# Completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-Z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --color=always $realpath'
-zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2 --bind=tab:accept
-zstyle ':fzf-tab:*' switch-group '<' '>'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
 # Keybinding
 bindkey -e
@@ -79,18 +80,15 @@ alias open='xdg-open'
 # alias ls='ls --color'
 alias ls='eza'
 alias ll='ls -l'
-alias lt='ls -lT'
+alias lt='ls -lT --git-ignore'
 alias fastfetch="fastfetch --logo windows"
-alias viu="viu-media" # fastanime new name for some reason
 alias ff="fastfetch"
 alias neofetch="ff"
 alias dojava="javac *.java && java"
 alias bonsai="cbonsai -li"
 alias vim=nvim
 alias vi=nvim
-alias timeshift-launcher="sudo -E timeshift-launcher"
 alias py=python
-alias temperature="busctl --user -- set-property rs.wl-gammarelay / rs.wl.gammarelay Temperature q"
 
 # Tmux stuff
 alias tn='tmux new-session -s'
@@ -102,22 +100,19 @@ export TERM=xterm-256color
 export RUSTC_WRAPPER=/usr/bin/sccache
 export MAKEFLAGS="--jobs=$(nproc)" # For multi-threading make compilation. (Will multi-thread some aur package builds)
 export MANPAGER='nvim +Man!'
+export PATH="$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH" # For haskell paths
+export EDITOR="nvim"
 
 # Shell integrations
-# eval "$(fzf --zsh)"
+eval "$(fzf --zsh)"
 if [ -f "/usr/bin/mise" ]; then
 	eval "$(/usr/bin/mise activate zsh)"
 fi
 eval "$(zoxide init zsh)"
 
-# Load completions
-autoload -U compinit && compinit
-
-# Start uwsm
-if command -v uwsm > /dev/null; then
-	if uwsm check may-start && uwsm select; then
-		exec systemd-cat -t uwsm_start uwsm start default
-	fi
+# Start uwsm (Pipe to dev null because it does that now)
+if uwsm check may-start > /dev/null && uwsm select; then
+	exec systemd-cat -t uwsm_start uwsm start default
 fi
 
 zinit cdreplay -q
