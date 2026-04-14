@@ -1,6 +1,7 @@
 -- Now requires the tree-sitter-cli
 return {
-    "nvim-treesitter/nvim-treesitter",
+    'nvim-treesitter/nvim-treesitter',
+    dependencies = { 'neovim-treesitter/treesitter-parser-registry' },
     lazy = false,
-    build = ':TSUpdate'
+    build = ':TSUpdate',
 }
