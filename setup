@@ -206,13 +206,13 @@ function download_dependencies () {
   if [ ! -f "$BIN_DIR/rg" ]; then
       print_bottom "[DEP] Installing ripgrep"
       tmp_dir=$(mktemp -d)
-      pushd tmp_dir
+      pushd $tmp_dir
 
       curl -LO 'https://github.com/BurntSushi/ripgrep/releases/download/15.2.0/ripgrep-15.2.0-x86_64-unknown-linux-musl.tar.gz'
       tar xf 'ripgrep-15.2.0-x86_64-unknown-linux-musl.tar.gz'
 
       out=$(echo */)
-      pushd out
+      pushd $out
       mv "rg" "$BIN_DIR"
       popd
 
