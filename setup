@@ -205,15 +205,20 @@ function download_dependencies () {
   print_bottom "[DEP] Checking if ripgrep (rg) exists"
   if [ ! -f "$BIN_DIR/rg" ]; then
       print_bottom "[DEP] Installing ripgrep"
-      git clone --depth=1 https://github.com/burntsushi/ripgrep
-      pushd ripgrep
-      print_bottom "[DEP::ripgrep] Compiling ripgrep"
-      cargo build --release
-      mv "target/release/rg" "$BIN_DIR"
+      tmp_dir=$(mktemp -d)
+      pushd tmp_dir
+
+      curl -LO 'https://github.com/BurntSushi/ripgrep/releases/download/15.2.0/ripgrep-15.2.0-x86_64-unknown-linux-musl.tar.gz'
+      tar xf 'ripgrep-15.2.0-x86_64-unknown-linux-musl.tar.gz'
+
+      out=$(echo */)
+      pushd out
+      mv "rg" "$BIN_DIR"
+      popd
 
       print_bottom "[DEP:ripgrep] Cleaning up"
       popd
-      rm -rf ripgrep
+      rm -rf $tmp_dir
   fi
 
   print_bottom "[CONF] Configuring Fastfetch"
